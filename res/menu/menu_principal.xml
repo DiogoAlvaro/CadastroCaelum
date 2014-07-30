@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:agenda="http://schemas.android.com/apk/res-auto">
+    <item 
+        android:id="@+id/menu_novo"
+        android:title="@string/menu_Novo" 
+        android:icon="@drawable/ic_action_new"
+        agenda:showAsAction="ifRoom|withText" 
+        />
+    
+    <item
+        android:id="@+id/menu_mapa"
+        android:title="@string/menu_Mapa" 
+        android:icon="@drawable/ic_action_map"  
+        agenda:showAsAction="ifRoom|withText" 
+        />
+    
+    
+    <item 
+        android:icon="@drawable/ic_action_overflow"
+        android:title="@string/menu_MaisOpcoes" 
+        agenda:showAsAction="ifRoom|withText">
+        <menu>
+		    <item
+		        android:id="@+id/menu_enviar_alunos"
+		        android:title="@string/menu_Sincronizar" 
+		        android:icon="@drawable/ic_action_import_export"
+		        agenda:showAsAction="ifRoom|withText"
+		        />    
+			
+		    <item
+		        android:id="@+id/menu_receber_provas"
+		        android:title="@string/menu_BaixarProvas" 
+		        android:icon="@drawable/ic_action_download"
+		        agenda:showAsAction="ifRoom|withText"
+		        /> 
+		        
+		    <item
+		        android:id="@+id/menu_preferencias"
+		        android:title="@string/menu_Preferencias"
+		        android:icon="@drawable/ic_action_settings"
+		        agenda:showAsAction="ifRoom|withText"
+		        />             
+            
+        </menu>
+	</item>
+</menu>

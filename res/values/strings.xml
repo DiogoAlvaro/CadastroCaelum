@@ -7,5 +7,16 @@
     <string name="title_activity_formulario">Cadastro de Alunos</string>
     <string name="noImage">Imagem Não Disponível</string>
     <string name="formularioName">Nome</string>
+    <string name="formularioTelefone">Telefone</string>
+    <string name="formularioAddress">Endereço</string>
+    <string name="formularioSite">Site</string>
+    <string name="formularioNota">Nota</string>
+    <string name="formularioGravar">Gravar Informações</string>
+    <string name="menu_Novo">Novo</string>
+    <string name="menu_Mapa">Mapa</string>
+    <string name="menu_Sincronizar">Sincronizar</string>
+    <string name="menu_BaixarProvas">Baixar Provas</string>
+    <string name="menu_Preferencias">Preferências</string>
+    <string name="menu_MaisOpcoes">Mais Opções</string>
 
 </resources>

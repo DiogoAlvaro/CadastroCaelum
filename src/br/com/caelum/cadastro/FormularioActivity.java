@@ -1,9 +1,13 @@
 package br.com.caelum.cadastro;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class FormularioActivity extends ActionBarActivity {
 
@@ -11,6 +15,21 @@ public class FormularioActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
+		
+		Button botao = (Button) findViewById(R.id.botao);
+		
+		botao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(FormularioActivity.this, "Botão Clicado", Toast.LENGTH_LONG).show();
+				
+				finish();
+			}
+		});
+		
+		
+		
 	}
 
 	@Override
@@ -26,6 +45,7 @@ public class FormularioActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		
 		if (id == R.id.action_settings) {
 			return true;
 		}
