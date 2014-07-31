@@ -8,13 +8,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+import br.com.caelum.modelo.Aluno;
 
 public class FormularioActivity extends ActionBarActivity {
 
+	private FormularioHelper helper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
+		
+		
+		this.helper = new FormularioHelper(this);
 		
 		Button botao = (Button) findViewById(R.id.botao);
 		
@@ -22,9 +28,10 @@ public class FormularioActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(FormularioActivity.this, "Botão Clicado", Toast.LENGTH_LONG).show();
 				
-				finish();
+				Aluno aluno = helper.PegaAlunoDoFormulario();
+				
+				Toast.makeText(FormularioActivity.this, "Objeto Aluno com o cadastro de "+ aluno.getNome() +" foi criado.", Toast.LENGTH_LONG).show();
 			}
 		});
 		

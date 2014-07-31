@@ -31,12 +31,10 @@ public class ListaAlunosActivity extends ActionBarActivity {
 		
 		listaAlunos.setAdapter(adapter);
 		
-		
 		listaAlunos.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> adpter, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> adpter, View view, int position, long id) {
 				
 				Toast.makeText(ListaAlunosActivity.this, "Posição Selecionada: "+ position, Toast.LENGTH_LONG).show();
 				
@@ -47,8 +45,7 @@ public class ListaAlunosActivity extends ActionBarActivity {
 		listaAlunos.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> adapter, View view,	
-					int position, long id) {
+			public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
 				
 					Toast.makeText(ListaAlunosActivity.this, "Nome do Aluno Selecionado: "+ adapter.getItemAtPosition(position), Toast.LENGTH_LONG).show();
 				
