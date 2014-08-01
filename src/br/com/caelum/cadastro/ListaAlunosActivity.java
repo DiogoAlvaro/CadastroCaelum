@@ -1,8 +1,10 @@
 package br.com.caelum.cadastro;
 
-import android.support.v7.app.ActionBarActivity;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +15,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import br.com.caelum.cadastro.dao.AlunoDAO;
+import br.com.caelum.modelo.Aluno;
 
 public class ListaAlunosActivity extends ActionBarActivity {
 
@@ -23,11 +27,21 @@ public class ListaAlunosActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listagem_alunos);
 		
-		String[] alunos = {"Anderson", "Felipe", "Guilherme"};
+	
+		 
+		AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+		
+		List<Aluno> alunos = dao.getList();
+		
+		dao.close();
+		
+		
+		//String[] alunos = {"Anderson", "Felipe", "Guilherme"};
+		
 		
 		this.listaAlunos = (ListView) findViewById(R.id.lista_alunos);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
+		ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
 		
 		listaAlunos.setAdapter(adapter);
 		

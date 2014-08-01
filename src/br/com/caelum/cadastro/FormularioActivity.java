@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+import br.com.caelum.cadastro.dao.AlunoDAO;
 import br.com.caelum.modelo.Aluno;
 
 public class FormularioActivity extends ActionBarActivity {
@@ -20,7 +21,7 @@ public class FormularioActivity extends ActionBarActivity {
 		setContentView(R.layout.formulario);
 		
 		
-		this.helper = new FormularioHelper(this);
+		helper = new FormularioHelper(this);
 		
 		Button botao = (Button) findViewById(R.id.botao);
 		
@@ -30,8 +31,14 @@ public class FormularioActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				
 				Aluno aluno = helper.PegaAlunoDoFormulario();
+								
+				AlunoDAO dao = new AlunoDAO(FormularioActivity.this);
+				dao.insere(aluno);
+				dao.close();
 				
-				Toast.makeText(FormularioActivity.this, "Objeto Aluno com o cadastro de "+ aluno.getNome() +" foi criado.", Toast.LENGTH_LONG).show();
+				Toast.makeText(FormularioActivity.this, "Cadastro Efetuado com sucesso!", Toast.LENGTH_LONG).show();
+				
+				finish();
 			}
 		});
 		
