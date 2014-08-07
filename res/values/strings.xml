@@ -18,5 +18,10 @@
     <string name="menu_BaixarProvas">Baixar Provas</string>
     <string name="menu_Preferencias">Preferências</string>
     <string name="menu_MaisOpcoes">Mais Opções</string>
-
+	<string name="menu_contexto_ligar">Ligar</string>
+	<string name="menu_contexto_enviarSMS">Enviar SMS</string>
+	<string name="menu_contexto_acharNoMapa">Achar no Mapa</string>
+	<string name="menu_contexto_navegarNoSite">Navegar no Site</string>
+	<string name="menu_contexto_deletar">Deletar</string>
+	<string name="menu_contexto_enviarEmail">Enviar E-mail</string>
 </resources>

@@ -16,7 +16,6 @@ public class FormularioHelper {
 	private SeekBar nota;
 	
 	public FormularioHelper(FormularioActivity activity) {
-		aluno = new Aluno();
 		
 		foto = (ImageView) activity.findViewById(R.id.foto);
 		nome = (EditText) activity.findViewById(R.id.nome);
@@ -24,17 +23,29 @@ public class FormularioHelper {
 		endereco = (EditText) activity.findViewById(R.id.endereco);
 		site = (EditText) activity.findViewById(R.id.site);
 		nota = (SeekBar) activity.findViewById(R.id.nota);
+		
+		aluno = new Aluno();
 	}
 	
 	
 	public Aluno PegaAlunoDoFormulario(){
-		aluno.setNome(nome.toString());
-		aluno.setTelefone(telefone.toString());
-		aluno.setEndereco(endereco.toString());
-		aluno.setSite(site.toString());
+		aluno.setNome(nome.getEditableText().toString());
+		aluno.setTelefone(telefone.getEditableText().toString());
+		aluno.setEndereco(endereco.getEditableText().toString());
+		aluno.setSite(site.getEditableText().toString());
 		aluno.setNota(Double.valueOf(nota.getProgress()));
 		
 		return aluno;
+	}
+	
+	public void colocarNoFormulario(Aluno aluno){
+		nome.setText(aluno.getNome());
+		telefone.setText(aluno.getTelefone());
+		endereco.setText(aluno.getEndereco());
+		site.setText(aluno.getSite());
+		nota.setProgress(aluno.getNota().intValue());
+		
+		this.aluno = aluno;
 	}
 	
 }

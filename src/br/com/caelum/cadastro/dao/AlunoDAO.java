@@ -14,26 +14,62 @@ import br.com.caelum.modelo.Aluno;
 public class AlunoDAO extends SQLiteOpenHelper {
 
 	
-	private static int VERSAO = 1;
-	private static String TABELA = "Alunos";
-	private static String DATABASE = "CadastroCaelum";
-	private static final String[] COLUNAS = {"id", "foto", "nome", "telefone", "endereco", "site", "nota"};
+	private static final int VERSAO = 1;
+	private static final String TABELA = "Alunos";
+	private static final String DATABASE = "CadastroCaelum";
+	//private static final String[] COLUNAS = {"id", "nome", "telefone", "endereco", "site", "nota", "foto"};
 	
 	public AlunoDAO(Context context) {
 		super(context, DATABASE, null, VERSAO);
+		
+		Log.i("ALUNO_DAO", "Construtor Chamado.");
+		
+		
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		criaBanco(db);
+		
+		Log.i("ALUNO_DAO", "Chegou no OnCreate...");
+		
+		String sql = "CREATE TABLE IF NOT EXISTS " + TABELA + "(id INTEGER PRIMARY KEY," +
+				"nome TEXT UNIQUE NOT NULL, telefone TEXT, endereco TEXT, " +
+				"site TEXT, nota REAL, foto TEXT); ";
+		
+		Log.i("ALUNO_DAO", sql);
+		
+		db.execSQL(sql);
+		
+		Log.i("SQLite das Trevas", "Banco Criado");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		String sql = "DROP TABLE IF EXISTS "+ DATABASE;
+		String sql = "DROP TABLE IF EXISTS "+ TABELA;
 		db.execSQL(sql);
-		criaBanco(db);
+		onCreate(db);
 	}
+	
+	
+	
+	
+	public void alterar(Aluno aluno){
+		
+		ContentValues values = new ContentValues();
+		String[] args = {aluno.getId().toString()};
+		
+		values.put("nome", aluno.getNome());
+		values.put("telefone", aluno.getTelefone());
+		values.put("endereco", aluno.getEndereco());
+		values.put("site", aluno.getSite());
+		values.put("nota", aluno.getNota());
+		values.put("foto", aluno.getFoto());
+		
+		getWritableDatabase().update(TABELA, values, "id=?", args);
+		
+		Log.i("ALUNO_DAO", "Aluno Alterado");
+	}
+	
 	
 	public void insere(Aluno aluno){
 		
@@ -46,54 +82,47 @@ public class AlunoDAO extends SQLiteOpenHelper {
 		values.put("nota", aluno.getNota());
 		values.put("foto", aluno.getFoto());
 		
-		getWritableDatabase().insert(DATABASE, null, values);
+		getWritableDatabase().insert(TABELA, null, values);
 		
+		Log.i("ALUNO_DAO", "Aluno Inserido");
 	}
 	
 	
-	public List<Aluno> getList(){
-		List<Aluno> alunos = new ArrayList<Aluno>();
+	public void exclui(Aluno aluno){
+		String args[] = {aluno.getId().toString()};
+		getWritableDatabase().delete(TABELA, "id=?", args);
 		
-		try {
-			Cursor cursor = getWritableDatabase().query(DATABASE, COLUNAS, null, null, DATABASE, null, null);
+		Log.i("ALUNO_DAO", "Aluno Excluido");
+	}
+	
+	public List<Aluno> getList(){
+		
+		SQLiteDatabase db = getReadableDatabase();
+		
+		//Cursor c = getReadableDatabase().query(tabela, colunas, null, null, null, null, null);
+		Cursor c = db.rawQuery("SELECT * FROM "+ TABELA, null);
+		
+		List<Aluno> alunos = new ArrayList<Aluno>(); 
+		
+		while (c.moveToNext()){
+			Aluno aluno = new Aluno();
 			
-			while (cursor.moveToNext()){
-				Aluno aluno = new Aluno();
-				
-				aluno.setId(cursor.getLong(0));
-				aluno.setFoto(cursor.getString(1));
-				aluno.setNome(cursor.getString(2));
-				aluno.setTelefone(cursor.getString(3));
-				aluno.setEndereco(cursor.getString(4));
-				aluno.setSite(cursor.getString(5));
-				aluno.setNota(cursor.getDouble(6));
-				
-				alunos.add(aluno);
-			}
+			aluno.setId(c.getLong(0));
+			aluno.setNome(c.getString(1));
+			aluno.setTelefone(c.getString(2));
+			aluno.setEndereco(c.getString(3));
+			aluno.setSite(c.getString(4));
+			aluno.setNota(c.getDouble(5));
+			aluno.setFoto(c.getString(6));
 			
-			cursor.close();
-			
-		} catch (Exception sQLiteException) {
-			String excessao = sQLiteException.toString();
-			Log.i("SQLiteException: =^/ ", excessao);
+			alunos.add(aluno);
 		}
+		c.close();
+		
+		Log.i("ALUNO_DAO", "Pesquisa Feita e Lista de Alunos devolvida para Activity");
 		
 		return alunos;
 	}
-	
-	public void criaBanco(SQLiteDatabase db){
-		String sql = "CREATE TABLE "+ TABELA +" (" +
-				"id INTEGER PRIMARY KEY," +
-				"nome TEXT UNIQUE NOT NULL," +
-				"telefone TEXT," +
-				"endereco TEXT," +
-				"site TEXT," +
-				"nota REAL," +
-				"foto TEXT);";
-		
-		db.execSQL(sql);
-	}
-	
 }
 
 

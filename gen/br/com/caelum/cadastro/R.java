@@ -1124,11 +1124,17 @@ containing a value of this type.
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int lista_alunos=0x7f050043;
-        public static final int menu_enviar_alunos=0x7f050047;
-        public static final int menu_mapa=0x7f050046;
-        public static final int menu_novo=0x7f050045;
-        public static final int menu_preferencias=0x7f050049;
-        public static final int menu_receber_provas=0x7f050048;
+        public static final int menu_contexto_acharNoMapa=0x7f050047;
+        public static final int menu_contexto_deletar=0x7f050049;
+        public static final int menu_contexto_enviarEmail=0x7f05004a;
+        public static final int menu_contexto_enviarSMS=0x7f050046;
+        public static final int menu_contexto_ligar=0x7f050045;
+        public static final int menu_contexto_navegarNoSite=0x7f050048;
+        public static final int menu_enviar_alunos=0x7f05004d;
+        public static final int menu_mapa=0x7f05004c;
+        public static final int menu_novo=0x7f05004b;
+        public static final int menu_preferencias=0x7f05004f;
+        public static final int menu_receber_provas=0x7f05004e;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int nome=0x7f05003d;
@@ -1220,7 +1226,8 @@ containing a value of this type.
     public static final class menu {
         public static final int formulario=0x7f0c0000;
         public static final int lista_alunos=0x7f0c0001;
-        public static final int menu_principal=0x7f0c0002;
+        public static final int menu_contexto=0x7f0c0002;
+        public static final int menu_principal=0x7f0c0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1278,6 +1285,12 @@ containing a value of this type.
         public static final int menu_Novo=0x7f0a0018;
         public static final int menu_Preferencias=0x7f0a001c;
         public static final int menu_Sincronizar=0x7f0a001a;
+        public static final int menu_contexto_acharNoMapa=0x7f0a0020;
+        public static final int menu_contexto_deletar=0x7f0a0022;
+        public static final int menu_contexto_enviarEmail=0x7f0a0023;
+        public static final int menu_contexto_enviarSMS=0x7f0a001f;
+        public static final int menu_contexto_ligar=0x7f0a001e;
+        public static final int menu_contexto_navegarNoSite=0x7f0a0021;
         public static final int noImage=0x7f0a0011;
         public static final int title_activity_formulario=0x7f0a0010;
     }

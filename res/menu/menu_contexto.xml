@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item 
+        android:id="@+id/menu_contexto_ligar"
+        android:title="@string/menu_contexto_ligar"
+        />
+    
+     <item 
+        android:id="@+id/menu_contexto_enviarSMS"
+        android:title="@string/menu_contexto_enviarSMS"
+        />
+     
+    <item 
+        android:id="@+id/menu_contexto_acharNoMapa"
+        android:title="@string/menu_contexto_acharNoMapa"
+        />
+    
+    <item 
+        android:id="@+id/menu_contexto_navegarNoSite"
+        android:title="@string/menu_contexto_navegarNoSite"
+        />
+    
+    <item 
+        android:id="@+id/menu_contexto_deletar"
+        android:title="@string/menu_contexto_deletar"
+        />
+    
+    <item 
+        android:id="@+id/menu_contexto_enviarEmail"
+        android:title="@string/menu_contexto_enviarEmail"
+        />
+
+</menu>
