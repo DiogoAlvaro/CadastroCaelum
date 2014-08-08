@@ -8,6 +8,7 @@ import br.com.caelum.modelo.Aluno;
 public class FormularioHelper {
 
 	private Aluno aluno;
+	@SuppressWarnings("unused")
 	private ImageView foto;
 	private EditText nome;
 	private EditText telefone;

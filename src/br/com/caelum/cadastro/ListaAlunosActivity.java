@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -138,11 +139,12 @@ public class ListaAlunosActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case R.id.menu_contexto_acharNoMapa:
-			
+			Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+			intentMapa.setData(Uri.parse("geo:0,0?z=14&q="+ alunoSelecionado.getEndereco()));
+			item.setIntent(intentMapa);
 			break;
 		
 		case R.id.menu_contexto_deletar:
-			
 			AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
 			dao.exclui(alunoSelecionado);
 			dao.close();
@@ -151,19 +153,30 @@ public class ListaAlunosActivity extends Activity {
 			break;
 		
 		case R.id.menu_contexto_enviarEmail:
-			
+			Intent intentEmail = new Intent(Intent.ACTION_SENDTO);
+			intentEmail.setType("*/*");
+			intentEmail.putExtra(Intent.EXTRA_EMAIL, "diogo@dalvarodesign.com.br");
+			intentEmail.putExtra(Intent.EXTRA_SUBJECT, "Nota do Curso");
+			intentEmail.putExtra(Intent.EXTRA_TEXT, "Olá "+ alunoSelecionado.getNome() +", Sua nota foi: "+ alunoSelecionado.getNota().toString());
 			break;
 		
 		case R.id.menu_contexto_enviarSMS:
-			
+			Intent intentSMS = new Intent(Intent.ACTION_VIEW);
+			intentSMS.setData(Uri.parse("sms:"+ alunoSelecionado.getTelefone()));
+			intentSMS.putExtra("sms_body", "Mensagem");
+			item.setIntent(intentSMS);
 			break;
 		
 		case R.id.menu_contexto_ligar:
-			
+			Intent intentLigar = new Intent(Intent.ACTION_CALL);
+			intentLigar.setData(Uri.parse("tel:"+ alunoSelecionado.getTelefone()));
+			item.setIntent(intentLigar);
 			break;
 		
 		case R.id.menu_contexto_navegarNoSite:
-			
+			Intent intentSite = new Intent(Intent.ACTION_VIEW);
+			intentSite.setData(Uri.parse("http:"+ alunoSelecionado.getSite()));
+			item.setIntent(intentSite);
 			break;
 		
 		default:
